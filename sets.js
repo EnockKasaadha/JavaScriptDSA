@@ -38,12 +38,44 @@ function Set() {
             }
 
     //the add() method
-    this.add = function(value) {
-        if (!this.has(value)) {
-            items[value] = value;
+        this.add = function(value) {
+            if (!this.has(value)) {
+                items[value] = value;
+                return true;
+            }
+
+            return false;
+    }
+
+    //the delete() method
+    this.delete = function(value) {
+        if (this.has(value)) {   //there is a parsing error on this code that needs to be fixed
+            delete items[value];
             return true;
         }
-
         return false;
     }
+
+    //clear() method
+    //if we want to remove all the values from the set 
+        this.clear = function () {
+            items = {};
+        }
+
+    //the size() method
+    //if we want to return the number of items in the set
+        this.size = function () {
+            return Object.keys(items).length;
+        }
+
+    //the values() method
+    //if we want to return all the values that are in a set
+        this.values = function () {
+            let values = [];
+            for (let i=0, keys=Object.keys(items); i<keys.length; i++) {
+                values.push(items[keys[i]]);
+            }
+
+            return values;
+        }
 }
