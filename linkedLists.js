@@ -148,10 +148,14 @@ function LinkedList() {
     };
 
     //this returns true if the linked list does not contain any items an false if it does
-    this.isEmpty = function () {};
+    this.isEmpty = function () {
+        return length === 0;
+    };
 
     //this returns the number of elements in the list. It is similar to the .length property
-    this.size = function () {};
+    this.size = function () {
+        return length;
+    };
 
     //we need to overwrite the default toString JavaScript method because linked lists use NODE class as an item.
     this.toString =  function () {
