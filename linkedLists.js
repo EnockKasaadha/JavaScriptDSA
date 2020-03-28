@@ -39,7 +39,7 @@ function LinkedList() {
             //one where the list is not empty and we are appending elements to it
 
         let node = new Node(element),
-                   current;
+            current;
 
         if (head === null) {
             //when list is empty
@@ -72,9 +72,9 @@ function LinkedList() {
         //check for out of bounds value
         if (position >= 0 && position<= length) {
             let node = new Node(element),
-                       current = head,
-                       previous,
-                       index = 0;
+                current = head,
+                previous,
+                index = 0;
 
             if (position === 0) {
                 node.next = current;
@@ -103,8 +103,8 @@ function LinkedList() {
         //check for out-of-bounds values
         if (postiion > -1 && position < length) {
             let current = head,
-                          previous,
-                          index = 0;
+                previous,
+                index = 0;
 
             //removing first item
             if (position === 0) {
@@ -140,7 +140,15 @@ function LinkedList() {
     this.size = function () {};
 
     //we need to overwrite the default toString JavaScript method because linked lists use NODE class as an item.
-    this.toString =  function () {};
+    this.toString =  function () {
+        let current = head,
+            string  = '';
+
+        while (current) {
+            string+=current.element + (current.next ? 'n' : '');
+            current = current.next;
+        }
+    };
 
     //to print out the elements we have we will use
     this.print = function () {};
