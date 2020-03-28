@@ -131,7 +131,21 @@ function LinkedList() {
     this.remove = function (element) {};
 
     //this returns an index of an element in the list, if the element is not in the list, it returns -1
-    this.indexOf = function (element) {};
+    this.indexOf = function (element) {
+        let current = head,
+            index = -1;
+
+        while (current) {
+            if (element === current.element) {
+                return index;
+            }
+
+            index ++;
+            current = current.next;
+        }
+
+        return -1;
+    };
 
     //this returns true if the linked list does not contain any items an false if it does
     this.isEmpty = function () {};
