@@ -36,7 +36,7 @@ function LinkedList() {
     this.append = function (element){
         //there are two scenarios when adding elements to a linked list
             //one where the list is empty and we are adding its first element
-            //one where the listis not empty and we are appending elements to it
+            //one where the list is not empty and we are appending elements to it
 
         let node = new Node(element),
                    current;
@@ -68,7 +68,34 @@ function LinkedList() {
     ///////////////////////////////////////////////
 
     //this inserts a new item at a specified position
-    this.insert = function (position, element) {};
+    this.insert = function (position, element) {
+        //check for out of bounds value
+        if (position >= 0 && position<= length) {
+            let node = new Node(element),
+                       current = head,
+                       previous,
+                       index = 0;
+
+            if (position === 0) {
+                node.next = current;
+                head = node;
+            } else {
+                while (index++ < position) {
+                    previous = current;
+                    current = current.next;
+                }
+
+                node.next = current;
+                previous.next = node;
+            }
+
+            length++; //update size of the list
+
+            return true;
+        } else {
+            return false;
+        }
+    };
 
     //this removes an item at a specified postion
     this.removeAt = function (position) {
