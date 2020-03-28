@@ -171,3 +171,36 @@ function LinkedList() {
     //to print out the elements we have we will use
     this.print = function () {};
 }
+//////////////////////////////////////////////////////////////////////
+
+//DOUBLY LINKED LISTS
+/* 
+    the difference between a doubly linked list and a normal linked list is that in a normal linked list, we make alink form one node to the next one only while in the doubly linked list we have a double link; one for the next element and one for the previous element
+*/
+
+//IMPLEMENTING A DOUBLY LINKED LIST
+function DoublyLinkedList() {
+    let Node = function(element) {
+        this.element = element;
+        this.next = null;
+        this.prev = null;
+    };
+
+    let length = 0;
+    let head = null;
+    let tail = null;
+
+    //THE THE METHODS NEEDED ARE ADDED DOWN HERE
+    //insertinf a new element at any position
+        this.insert = function (position, element) {
+            //check for the out-of-bounds values
+            if (position >= 0 && postion <= length) {
+                let node = new Node(element),
+                current = head,
+                previous,
+                index = 0;
+            } else {
+                
+            }
+        }
+}
