@@ -78,4 +78,92 @@ function Set() {
 
             return values;
         }
+    ///////////////////////////////////////////////////
+
+    /* 
+        SET OPERATIONS
+        we can perform the following operations on sets
+            Union; given two sets, this returns a new set with elements from both the given sets
+            Intersection; given two sets, this returns a new set with elements that exist in both sets
+            Difference, Given two sets, this returns a new set with all the elements taht exist in the first set and do not exist in the second set
+            subset; this confirms whether a given set is a subset of another set
+    */
+
+        // SET UNION
+            this.union = function (otherSet) {
+                let unionSet = new Set(); // first we create a new set
+
+                // we then get the values from the first set
+                let values = this.values();
+                for (let i=0; i<values.length; i++) {
+                    unionSet.add(values[i]);
+                }
+
+                // we also get the values from the second set
+                values = otherSet.values();
+                for (let i = 0; i < values.length; i++) {
+                    unionSet.add(values[i]);
+                    
+                }
+
+                return unionSet;
+            }/////////////////////////////////////
+            // let us get an example
+                let setA = new Set;
+                    setA.add(1);
+                    setA.add(2);
+                    setA.add(3);
+
+                let setB = new Set();
+                    setB.add(3);
+                    setB.add(4);
+                    setB.add(5);
+                    setB.add(6);
+
+                let unionAB = setA.union(setB);
+                console.log(unionAB); // this outputs ['1', '2', '3', '4', '5', '6']. note that 3 appears once in the result 
+
+
+        // SET INTERSECTION
+        this.intersection = function (otherSet) {
+            let intersectionSet = new Set();
+
+            let values = this.values();
+            for (let i=0; i<values.length; i++) {
+                if (otherSet.has(values[i])) {
+                    intersectionSet.add(values[i]);
+                }
+            }
+
+            return intersectionSet;
+        }
+
+        // SET DIFFERENCE
+        this.difference = function (otherSet) {
+            let differenceSet = new set();
+
+            let values = this.values();
+            for (let i = 0; i < values.length; i++) {
+                if (!otherSet.has(values[i])) {
+                    differenceSet.add(values[i]);                    
+                }    
+            }
+            return differenceSet;
+        }
+
+        //SUBSET
+        this.subset = function (otherSet) {
+            if (this.size() >otherSet.size) {
+                return false;
+            } else {
+                let values = this.values();
+                for (leti=0; i<values.length;) {
+                    if (!otherSet.has(values[i])) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+        }
 }
