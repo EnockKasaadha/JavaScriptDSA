@@ -11,9 +11,9 @@
         a set with no element is called a NULL set or EMPTY set
 */
 
-//IMPLEMENTING A SET
+// IMPLEMENTING A SET
 function Set() {
-    let items = {}; //note that here we use curly  braces not square braces
+    let items = {}; // note that here we use curly  braces not square braces
 
     /* 
         //methods that are used include;
@@ -25,19 +25,19 @@ function Set() {
             values() - this returns an array of all the values of the set
     */
 
-    //the has(value) method
-        //we implement this method first because it is used in other mehods
+    // the has(value) method
+        // we implement this method first because it is used in other mehods
         this.has = function(value) {
-            return value in items; //the 'in" verifies that a given value is a property of the items object
+            return value in items; // the 'in" verifies that a given value is a property of the items object
         }
 
-        //OR
-        //a better way to implement this would be
+        // OR
+        // a better way to implement this would be
             this.has = function(value) {
                 return items.hasOwnProperty(value);
             }
 
-    //the add() method
+    // the add() method
         this.add = function(value) {
             if (!this.has(value)) {
                 items[value] = value;
@@ -47,29 +47,29 @@ function Set() {
             return false;
     }
 
-    //the delete() method
+    // the delete() method
     this.delete = function(value) {
-        if (this.has(value)) {   //there is a parsing error on this code that needs to be fixed
+        if (this.has(value)) {   // there is a parsing error on this code that needs to be fixed
             delete items[value];
             return true;
         }
         return false;
     }
 
-    //clear() method
-    //if we want to remove all the values from the set 
+    // clear() method
+    // if we want to remove all the values from the set 
         this.clear = function () {
             items = {};
         }
 
-    //the size() method
-    //if we want to return the number of items in the set
+    // the size() method
+    // if we want to return the number of items in the set
         this.size = function () {
             return Object.keys(items).length;
         }
 
-    //the values() method
-    //if we want to return all the values that are in a set
+    // the values() method
+    // if we want to return all the values that are in a set
         this.values = function () {
             let values = [];
             for (let i=0, keys=Object.keys(items); i<keys.length; i++) {
