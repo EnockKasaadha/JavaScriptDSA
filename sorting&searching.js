@@ -35,3 +35,15 @@
                 array[index1] = array[index2];
                 array[index2] = aux;
             }
+
+    // THE IMPROVED BUBBLE SORT
+    this.modifiedBubleSort = function () {
+        var length = array.length;
+        for (let i=0; i<length; i++) {
+            for (let j=0; j<length-1-i; j++) {
+                if (array[j] > array[j+1]) {
+                    swap(j, j+1);
+                }
+            }
+        }
+    }
