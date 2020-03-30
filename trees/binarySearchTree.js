@@ -50,3 +50,41 @@ function BinarySearchTree () {
         }
     
 }
+
+/*
+    TREE TRAVERSAL
+    this is the process of visiting every node on the tree and performing an operation at each node. 
+    
+    there are three ways we can traverse a tree and there are;
+        1. in-order traversal
+        2. pre-order traversal
+        3. post-order traversal
+
+    lets take a deeper dive into the three
+*/
+
+    // IN-ORDER TRAVERSAL
+    // This visits all nodes in an ascending order
+    // this means nodes are visited from the smalles to the largest
+    // this traversal is used to sort a tree
+
+        this.inOrderTraverse = function (callback) {
+            this.inOrderTraverse(root, callback);
+        }
+
+        // we now create the helper callback function
+            var inOrderTraverse = function (node, callback) {
+                if (node !== null) {
+                    inOrderTraverse (node.left, callback);
+                    callback (node.key);
+                    inOrderTraverseNode (node.right, callback);
+                }
+            }
+
+                // let us try to execute the traversal
+                    // first we create a callback function that will print the values
+                    function printNode (value) {
+                        console.log(value);
+                    }
+                    //then we call the traversal
+                    tree.inOrderTraverse(printNode);
