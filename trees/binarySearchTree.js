@@ -69,13 +69,13 @@ function BinarySearchTree () {
     // this traversal is used to sort a tree
 
         this.inOrderTraverse = function (callback) {
-            this.inOrderTraverse(root, callback);
+            inOrderTraverseNode(root, callback);
         }
 
         // we now create the helper callback function
-            var inOrderTraverse = function (node, callback) {
+            var inOrderTraverseNode = function (node, callback) {
                 if (node !== null) {
-                    inOrderTraverse (node.left, callback);
+                    inOrderTraverseNode (node.left, callback);
                     callback (node.key);
                     inOrderTraverseNode (node.right, callback);
                 }
@@ -88,3 +88,32 @@ function BinarySearchTree () {
                     }
                     //then we call the traversal
                     tree.inOrderTraverse(printNode);
+///////////////////////////////////////////////////
+
+    // PRE-ORDER TRAVERSAL
+        this.preOrderTraversal = function (callback) {
+            preOrderTraversalNode (root, callback);
+        }
+        // the preOrderTraverseNode method is as follows
+        preOrderTraversalNode = function (node, callback) {
+            if (node !== null) {
+                callback (node.key);
+                preOrderTraversalNode(node.left, callback);
+                preOrderTraversalNode(node.right, callback);
+            }
+        }
+//////////////////////////////////////////////////
+
+// POST ORDER TRAVERSAL
+this.postOrderTraverse = function (callback) {
+    postOrderTraverseNode (root, callback);
+}
+
+var postOrderTraverseNode = function (node, callback) {
+    if (node !== null) {
+        postOrderTraverseNode(node.left, callback);
+        postOrderTraverseNode(node.right, callback);
+
+        callback(node.key);
+    }
+}
