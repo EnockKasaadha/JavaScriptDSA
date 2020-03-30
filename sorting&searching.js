@@ -239,3 +239,59 @@
                     }
                 }
 
+
+        
+// SEARCHING ALGORITHMS
+
+    // N.B; The search() methods we created in the data structures and algoritms are searching algorithms more so the BINARY SEARCH TREE search() methods. 
+
+    // THE SEQUENTIAL/LINEAR SEARCH
+        //This is the most inefficient and basic search algorithm that consist of comparing each element with the one we are looking for
+                this.sequentialSearch = function (item) {
+                    for (var i=0; i<array.length; i++) {
+                        if (item === array[i]) {
+                            return i;
+                        }
+                    }
+
+                    return -1;
+                }
+
+    /* 
+        THE BINARY SEARCH
+            this works like a guessing game e.g someone can say, "I  think the number is between 1 and 10"
+
+            to make the algorthm work, these steps have to be followed;
+                1. A value is selected in the middle of the array
+                2. if the item is the one we are looking for, we are done
+                3. if the value we are looking for is less than the selected one, then we will go to the left and back to one (lower).
+                4. if the value we are looking for is larger than the one selected, then we will go to the right and back to 1 (higher)
+
+    */
+
+    this.binarySearch = function (item) {
+        this.quickSort ();
+
+        var low = 0,
+            high = array.length - 1;
+            mid, 
+            element;
+
+        while (low <= high) {
+            mid = Math.floor((low + high) / 2);
+            element = array[mid];
+
+            if (element < item) {
+                low = mid + 1;
+            } else if (element > item) {
+                high = mid - 1;
+            } else {
+                return mid;
+            }
+        }
+
+        return -1;
+    }
+
+
+
