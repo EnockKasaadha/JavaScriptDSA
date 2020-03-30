@@ -67,3 +67,69 @@
                     }
             }
         }
+
+    // THE INSERTION SORT
+    // this sorts assumes that the first item is sorted then it compares whether the next item should be placed infront of the first or stay where it is 
+        this.insertionSort = function () {
+            var length = array.length,
+            j,
+            temp;
+
+            for (let i = 0; i; i<length; i++) {
+                j = i;
+                temp = array[i];
+                
+                while (j>0 && array[j-1] > temp) {
+                    array[j] = array[j-1];
+                    
+                    j--;
+                }
+
+                array[j] = temp;
+            }
+        };
+
+    // THE MERGE SORT (divide and conquer algorithm)
+    // this has a better performance with a complexity of 0(n log n);
+        this.mergeSort = function () {
+            array = mergeSortRec(array);
+        }
+
+        // mergeSortRec() helper function
+            var mergeSortRec = function (array) {
+                var length = array.length;
+                if (length === 1) {
+                    return array;
+                }
+
+                var mid = Math.floor(length / 2),
+                    left = array.slice(0, mid),
+                    right = array.slice(mid, length);
+
+                    return merge(mergeSortRec(left), mergeSortRec(right));
+            }
+
+            //merge() helper function
+                var merge = function (left, right) {
+                    var result = [], 
+                        il = 0,
+                        ir = 0;
+
+                    while (il < left.length && ir < right.length) {
+                        if (left[il] < right[ir]) {
+                            result.push(left[il++]);
+                        } else {
+                            result.push(right[ir++]);
+                        }
+                    }
+
+                    while (il < left.length) {
+                        result.push(left[il++]);
+                    }
+
+                    while (ir < right.length) {
+                        result.push(right[ir++]);
+                    }
+
+                    return result;
+                }
