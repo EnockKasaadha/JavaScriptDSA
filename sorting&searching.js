@@ -191,5 +191,51 @@
          // the swap function is similar to the one we created above but we can swap it with this ES6
             [array[index1], array[index2]] = [array[index2], array[index1]]
 
-    
+    // THE HEAP SORT
+    /* 
+        The heap sort treats an array as a binary tree
+            1. Index 0 is the root of the tree
+            2. the parent of any node N is N/2 (with the exception of the root node)
+            3. the left-hand side child of a node L is 2*L
+            4. the right-hand side of the node R is 2*R+1
+    */
+
+        this.heapSort = function () {
+            var heapSize = array.length;
+            buildHeap(array);
+
+            while (heapSize > 1) {
+                heapSize--;
+                swap(array, 0, heapSize);
+                heapify (array, heapSize, 0);
+            }
+        }
+
+        // the bulidHeap() function
+            var buildHeap = function (array) {
+                var heapSize = array.length;
+                for (var i = Math.floor(array.length /2); i>=0; i--) {
+                    heapify(array, heapSize , i);
+                }
+            }
+
+            // the heapify() function
+                var heapify = function(array, heapSize, i) {
+                    var left = i * 2 + 1,
+                        right = i * 2 + 2,
+                        largest = i;
+
+                    if (left < heapSize && array[left] > array[largest]) {
+                        largest = left;
+                    }
+
+                    if (right < heapSize && array[right] > array[largest]) {
+                        largest = right;
+                    }
+
+                    if (largest !== i) {
+                        swap(array, i, largest);
+                        heapify (array, heapSize, largest);
+                    }
+                }
 
