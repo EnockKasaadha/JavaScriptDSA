@@ -37,13 +37,33 @@
             }
 
     // THE IMPROVED BUBBLE SORT
-    this.modifiedBubleSort = function () {
-        var length = array.length;
-        for (let i=0; i<length; i++) {
-            for (let j=0; j<length-1-i; j++) {
-                if (array[j] > array[j+1]) {
-                    swap(j, j+1);
+        this.modifiedBubleSort = function () {
+            var length = array.length;
+            for (let i=0; i<length; i++) {
+                for (let j=0; j<length-1-i; j++) {
+                    if (array[j] > array[j+1]) {
+                        swap(j, j+1);
+                    }
                 }
             }
         }
-    }
+
+    // THE SELECTION SORT
+    // the selection sort finds the min value, places it in the first position, the second min value in the 2nd position and so on.
+        this.selectionSort = function () {
+            var length = array.length,
+            indexMin;
+
+            for (let i = 0; i <length; i++) {
+                    indexMin = i;
+                    for (var j=0; j<length; j++) {
+                        if (array[indexMin] > array[j]) {
+                            indexMin = j;
+                        }
+                    }
+                
+                    if (i !== indexMin) {
+                        swap(i, indexMin);
+                    }
+            }
+        }
