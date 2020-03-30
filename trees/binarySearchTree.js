@@ -117,3 +117,59 @@ var postOrderTraverseNode = function (node, callback) {
         callback(node.key);
     }
 }
+//////////////////////////////////////////////
+// SEARCHING FOR VALUES IN TREES
+    // FINDING THE MINIMUM AND MAXIMUM VALUES
+        // the min value is always the last on the left while the max on the right
+        this.min = function () {
+            return minMode(root);
+        }
+
+        //the callback minMode function
+        var minNode = function (node) {
+            if (node) {
+                while (node && node.left !== null) {
+                    node = node.left;
+                }
+
+                return node.key;
+            }
+
+            return null;
+        }
+        /********************************/
+        // the max value is always the last to the right
+        this.max = function () {
+            return maxNode(root);
+        }
+
+        var maxNode = function (node) {
+            if (node) {
+                while (node && node.right !== null) {
+                    node = node.right;
+                }
+
+                return node.key;
+            }
+
+            return null;
+        }
+
+    // SEARCHING FOR A SPECIFIC VALUE
+        this.search = function (key) {
+            return searchNode(root, key);
+        }
+
+        var searchNode = function (node, key) {
+            if (node === null) {
+                return false;
+            }
+
+            if (key < node.key) {
+                return searchNode(node.left, key);
+            } else if (key > node.key) {
+                return searchNode(node.right, key);
+            } else {
+                return true;
+            }
+        }
