@@ -133,3 +133,63 @@
 
                     return result;
                 }
+
+    /* 
+        THE QUICK SORT
+            This is probably the most used sorting algorithm
+            it has an 0(n log n) complexity but usually performs better than any other algorithm with the same complexity
+
+            this is how it is implemented
+                1. first, we need to select an item from the array called pivot, which is the middle item of the array.
+                2. this creates two pointers, the left pointer that points to the first item and the right pointer that points to the last item in the array
+                3. we now move the left pointer until we find an item that is greater than the pivot and we move the right pointer until we find an item that is lesser than the pivot and swap them.
+                4. we repeat this process until the left hand side pointer passes the right- hand side pointer. this process helps you to have values that are lesser than the pivot on the left and the ones greater than the pivot on the right. this is called the PARTITION OPERATION
+                5. This process is repeated for the greater values and the lesser values until the data is sorted
+    */
+
+    this.quickSort = function(array,left, right) {
+        var index;
+
+        if (array.length > 1) {
+            index = partition(array, left, right);;
+
+            if (left < index - 1) {
+                this.quickSort(array, left, index - 1);
+            }
+
+            if (index > right) {
+                this.quickSort(array, index, righty);
+            }
+        }
+    }
+
+        //the partition process
+        var partition = function(array, left, right) {
+            var pivot = array[Math.floor((right + left) / 2)],
+                i = left,
+                j = right;
+
+            while (i <= j) {
+                while (array[i] < pivot) {
+                    i++;
+                }
+                
+                while (array[j] > pivot) {
+                    j--;
+                }
+
+                if (i <= j) {
+                    swap(array, i, j);
+                    i++;
+                    j++;
+                }
+            }
+
+            return i;
+        }
+
+         // the swap function is similar to the one we created above but we can swap it with this ES6
+            [array[index1], array[index2]] = [array[index2], array[index1]]
+
+    
+
