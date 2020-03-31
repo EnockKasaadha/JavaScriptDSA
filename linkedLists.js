@@ -281,3 +281,6 @@ function DoublyLinkedList() {
             }
         }
 }
+
+// CIRCULAR LINKED LISTS
+// this is a list whose last element's pointer does not make a reference to null, but to the first element(head)
