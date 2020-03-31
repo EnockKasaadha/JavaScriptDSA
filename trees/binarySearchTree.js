@@ -49,19 +49,19 @@ function BinarySearchTree () {
             }
         }
     
-}
 
-/*
-    TREE TRAVERSAL
-    this is the process of visiting every node on the tree and performing an operation at each node. 
-    
-    there are three ways we can traverse a tree and there are;
-        1. in-order traversal
-        2. pre-order traversal
-        3. post-order traversal
 
-    lets take a deeper dive into the three
-*/
+    /*
+        TREE TRAVERSAL
+        this is the process of visiting every node on the tree and performing an operation at each node. 
+        
+        there are three ways we can traverse a tree and there are;
+            1. in-order traversal
+            2. pre-order traversal
+            3. post-order traversal
+
+        lets take a deeper dive into the three
+    */
 
     // IN-ORDER TRAVERSAL
     // This visits all nodes in an ascending order
@@ -88,7 +88,7 @@ function BinarySearchTree () {
                     }
                     //then we call the traversal
                     tree.inOrderTraverse(printNode);
-///////////////////////////////////////////////////
+    ///////////////////////////////////////////////////
 
     // PRE-ORDER TRAVERSAL
         this.preOrderTraversal = function (callback) {
@@ -102,74 +102,121 @@ function BinarySearchTree () {
                 preOrderTraversalNode(node.right, callback);
             }
         }
-//////////////////////////////////////////////////
+    //////////////////////////////////////////////////
 
-// POST ORDER TRAVERSAL
-this.postOrderTraverse = function (callback) {
-    postOrderTraverseNode (root, callback);
-}
-
-var postOrderTraverseNode = function (node, callback) {
-    if (node !== null) {
-        postOrderTraverseNode(node.left, callback);
-        postOrderTraverseNode(node.right, callback);
-
-        callback(node.key);
+    // POST ORDER TRAVERSAL
+    this.postOrderTraverse = function (callback) {
+        postOrderTraverseNode (root, callback);
     }
-}
-//////////////////////////////////////////////
-// SEARCHING FOR VALUES IN TREES
-    // FINDING THE MINIMUM AND MAXIMUM VALUES
-        // the min value is always the last on the left while the max on the right
-        this.min = function () {
-            return minMode(root);
+
+    var postOrderTraverseNode = function (node, callback) {
+        if (node !== null) {
+            postOrderTraverseNode(node.left, callback);
+            postOrderTraverseNode(node.right, callback);
+
+            callback(node.key);
         }
-
-        //the callback minMode function
-        var minNode = function (node) {
-            if (node) {
-                while (node && node.left !== null) {
-                    node = node.left;
-                }
-
-                return node.key;
+    }
+    //////////////////////////////////////////////
+    // SEARCHING FOR VALUES IN TREES
+        // FINDING THE MINIMUM AND MAXIMUM VALUES
+            // the min value is always the last on the left while the max on the right
+            this.min = function () {
+                return minMode(root);
             }
 
-            return null;
-        }
-        /********************************/
-        // the max value is always the last to the right
-        this.max = function () {
-            return maxNode(root);
-        }
+            //the callback minMode function
+            var minNode = function (node) {
+                if (node) {
+                    while (node && node.left !== null) {
+                        node = node.left;
+                    }
 
-        var maxNode = function (node) {
-            if (node) {
-                while (node && node.right !== null) {
-                    node = node.right;
+                    return node.key;
                 }
 
-                return node.key;
+                return null;
+            }
+            /********************************/
+            // the max value is always the last to the right
+            this.max = function () {
+                return maxNode(root);
             }
 
-            return null;
-        }
+            var maxNode = function (node) {
+                if (node) {
+                    while (node && node.right !== null) {
+                        node = node.right;
+                    }
 
-    // SEARCHING FOR A SPECIFIC VALUE
-        this.search = function (key) {
-            return searchNode(root, key);
-        }
+                    return node.key;
+                }
 
-        var searchNode = function (node, key) {
+                return null;
+            }
+
+        // SEARCHING FOR A SPECIFIC VALUE
+            this.search = function (key) {
+                return searchNode(root, key);
+            }
+
+            var searchNode = function (node, key) {
+                if (node === null) {
+                    return false;
+                }
+
+                if (key < node.key) {
+                    return searchNode(node.left, key);
+                } else if (key > node.key) {
+                    return searchNode(node.right, key);
+                } else {
+                    return true;
+                }
+            }
+
+    // REMOVING A NODE 
+    this.remove = function (key) {
+        root = removeNode(root, key);
+    }
+
+    //removeNode() function
+        var removeNode = function (node, key) {
             if (node === null) {
-                return false;
+                return null;
             }
 
             if (key < node.key) {
-                return searchNode(node.left, key);
+                node.left = removeNode(node.left, key);
             } else if (key > node.key) {
-                return searchNode(node.right, key);
+                node.right = removeNode(node.right, key);
+                return node;
             } else {
-                return true;
+                // case 1 - a leaf node
+                if (node.left === null && node.right === null) {
+                    node = null;
+
+                    return node;
+                }
+
+                //case 2 - a node with only one child
+                if (node.left == null) {
+                    node = node.right;
+
+                    return node;
+                } else if (node.right === null) {
+                    node = node.left;
+
+                    return node;
+                }
+
+                // case 3 - a node with 2 children
+                var aux = findMinNode (node.right);
+                node.key = aux.key;
+                node.right = removeNode (node.right, aux.key);
+
+                return node;
             }
         }
+}  
+
+// remember to add notes about the self balancing trees
